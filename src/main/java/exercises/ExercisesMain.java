@@ -1,11 +1,10 @@
 package exercises;
 
 import java.util.Collection;
-import java.util.Collections;
 import java.util.HashMap;
 import java.util.Map;
 
-public class Main {
+public class ExercisesMain {
 
     public static void main(String[] args) throws ClassNotFoundException {
 
@@ -17,7 +16,7 @@ public class Main {
         Class<?> hashMapClass = mapObject.getClass();
 
         // forName을 통한
-        Class<?> squareClass = Class.forName("exercises.Main$Square");
+        Class<?> squareClass = Class.forName("exercises.ExercisesMain$Square");
 
 //        printClassInfo(stringClass, hashMapClass, squareClass);
 
