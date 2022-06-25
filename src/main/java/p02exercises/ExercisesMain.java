@@ -1,4 +1,4 @@
-package exercises;
+package p02exercises;
 
 import java.util.Collection;
 import java.util.HashMap;
@@ -16,7 +16,7 @@ public class ExercisesMain {
         Class<?> hashMapClass = mapObject.getClass();
 
         // forName을 통한
-        Class<?> squareClass = Class.forName("exercises.ExercisesMain$Square");
+        Class<?> squareClass = Class.forName("p02exercises.ExercisesMain$Square");
 
 //        printClassInfo(stringClass, hashMapClass, squareClass);
 

@@ -1,6 +1,6 @@
-package reflection;
+package p01myreflection;
 
-import vehicles.Car;
+import p01vehicles.Car;
 
 import java.util.HashMap;
 import java.util.Map;
@@ -28,7 +28,7 @@ public class R01FirstPractice {
         //방법3
         Class<?> stringType = Class.forName("java.lang.String");
         Class<?> carType = Class.forName("vehicle.Car");
-        Class<?> engineType = Class.forName("vehicles.Car$Engine"); //내부정보에 접근하려면 달러$ 기호 사용
+        Class<?> engineType = Class.forName("p01vehicles.Car$Engine"); //내부정보에 접근하려면 달러$ 기호 사용
 
     }
 }

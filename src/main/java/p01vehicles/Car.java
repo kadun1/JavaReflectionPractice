@@ -1,4 +1,4 @@
-package vehicles;
+package p01vehicles;
 
 public class Car {
 

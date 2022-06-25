@@ -1,4 +1,4 @@
-package constructors;
+package p03constructors;
 
 import java.lang.reflect.Constructor;
 import java.lang.reflect.InvocationTargetException;
@@ -6,18 +6,21 @@ import java.util.Arrays;
 import java.util.List;
 import java.util.stream.Collectors;
 
-public class Main {
-    public static void main(String[] args) throws InvocationTargetException, InstantiationException, IllegalAccessException {
-//        printConstructorData(Address.class);
+public class ConstructorsMain {
+    public static void main(String [] args) throws IllegalAccessException, InstantiationException, InvocationTargetException {
+        printConstructorsData(Person.class);
 
         Address address = createInstanceWithArguments(Address.class, "First Street", 10);
-        Person person = createInstanceWithArguments(Person.class, address, "John", 20);
+
+        Person person = createInstanceWithArguments(Person.class,  address, "John", 20);
         System.out.println(person);
     }
 
-    public static <T> T createInstanceWithArguments(Class<T> clazz, Object ... args) throws InvocationTargetException, InstantiationException, IllegalAccessException {
+    public static <T> T createInstanceWithArguments(Class<T> clazz, Object ... args) throws IllegalAccessException, InvocationTargetException, InstantiationException {
+
         for (Constructor<?> constructor : clazz.getDeclaredConstructors()) {
-            if (constructor.getParameterTypes().length == args.length) {
+            if(constructor.getParameterTypes().length == args.length) {
+
                 return (T) constructor.newInstance(args);
             }
         }
@@ -25,7 +28,7 @@ public class Main {
         return null;
     }
 
-    public static void printConstructorData(Class<?> clazz) {
+    public static void printConstructorsData(Class<?> clazz) {
         Constructor<?>[] constructors = clazz.getDeclaredConstructors();
 
         System.out.println(String.format("class %s has %d declared constructors", clazz.getSimpleName(), constructors.length));
@@ -68,6 +71,15 @@ public class Main {
             this.address = address;
             this.name = name;
             this.age = age;
+        }
+
+        @Override
+        public String toString() {
+            return "Person{" +
+                    "address=" + address +
+                    ", name='" + name + '\'' +
+                    ", age=" + age +
+                    '}';
         }
     }
 
