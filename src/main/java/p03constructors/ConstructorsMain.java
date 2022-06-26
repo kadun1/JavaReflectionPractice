@@ -8,11 +8,11 @@ import java.util.stream.Collectors;
 
 public class ConstructorsMain {
     public static void main(String [] args) throws IllegalAccessException, InstantiationException, InvocationTargetException {
-        printConstructorsData(Person.class);
+        printConstructorsData(P03Person.class);
 
-        Address address = createInstanceWithArguments(Address.class, "First Street", 10);
+        P03Address address = createInstanceWithArguments(P03Address.class, "First Street", 10);
 
-        Person person = createInstanceWithArguments(Person.class,  address, "John", 20);
+        P03Person person = createInstanceWithArguments(P03Person.class,  address, "John", 20);
         System.out.println(person);
     }
 
@@ -44,30 +44,30 @@ public class ConstructorsMain {
         }
     }
 
-    public static class Person {
-        private final Address address;
+    public static class P03Person {
+        private final P03Address address;
         private final String name;
         private final int age;
 
-        public Person() {
+        public P03Person() {
             this.name = "anonymous";
             this.age = 0;
             this.address = null;
         }
 
-        public Person(String name) {
+        public P03Person(String name) {
             this.name = name;
             this.age = 0;
             this.address = null;
         }
 
-        public Person(String name, int age) {
+        public P03Person(String name, int age) {
             this.name = name;
             this.age = age;
             this.address = null;
         }
 
-        public Person(Address address, String name, int age) {
+        public P03Person(P03Address address, String name, int age) {
             this.address = address;
             this.name = name;
             this.age = age;
@@ -83,11 +83,11 @@ public class ConstructorsMain {
         }
     }
 
-    public static class Address {
+    public static class P03Address {
         private String street;
         private int number;
 
-        public Address(String street, int number) {
+        public P03Address(String street, int number) {
             this.street = street;
             this.number = number;
         }

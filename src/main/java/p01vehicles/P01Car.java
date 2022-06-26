@@ -1,6 +1,6 @@
 package p01vehicles;
 
-public class Car {
+public class P01Car {
 
     static class Engine{
 
