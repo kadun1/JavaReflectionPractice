@@ -4,6 +4,7 @@ import p09data.GameConfig;
 import p09data.UserInterfaceConfig;
 
 import java.io.IOException;
+import java.lang.reflect.Array;
 import java.lang.reflect.Constructor;
 import java.lang.reflect.Field;
 import java.lang.reflect.InvocationTargetException;
@@ -16,8 +17,8 @@ public class P09Main {
     private static final Path UI_CONFIG_PATH = Path.of("src/main/resources/user-interface.cfg");
 
     public static void main(String[] args) throws IOException, InvocationTargetException, NoSuchMethodException, InstantiationException, IllegalAccessException {
-        GameConfig config = createConfigObject(GameConfig.class, GAME_CONFIG_PATH);
-//        UserInterfaceConfig config = createConfigObject(UserInterfaceConfig.class, UI_CONFIG_PATH);
+//        GameConfig config = createConfigObject(GameConfig.class, GAME_CONFIG_PATH);
+        UserInterfaceConfig config = createConfigObject(UserInterfaceConfig.class, UI_CONFIG_PATH);
 
         System.out.println(config);
 
@@ -36,6 +37,11 @@ public class P09Main {
             String configLine = scanner.nextLine();
 
             String[] nameValuePair = configLine.split("=");
+
+            if (nameValuePair.length != 2) {
+                continue;
+            }
+
             String propertyName = nameValuePair[0];
             String propertyValue = nameValuePair[1];
 
@@ -49,13 +55,32 @@ public class P09Main {
 
             field.setAccessible(true);
 
-            Object parseValue = parseValue(field.getType(), propertyValue);
+            Object parseValue;
+
+            if (field.getType().isArray()) {
+                parseValue = parseArray(field.getType().getComponentType(), propertyValue);
+            } else {
+                parseValue = parseValue(field.getType(), propertyValue);
+            }
 
             field.set(configInstance, parseValue);
         }
 
         return configInstance;
     }
+
+    private static Object parseArray(Class<?> arrayElementType, String value) {
+        String[] elementValues = value.split(",");
+
+        Object arrayObject = Array.newInstance(arrayElementType, elementValues.length);
+
+        for (int i = 0; i < elementValues.length; i++) {
+            Array.set(arrayObject, i, parseValue(arrayElementType, elementValues[i]));
+        }
+
+        return arrayObject;
+    }
+
 
     private static Object parseValue(Class<?> type, String value) {
         if (type.equals(int.class)) {
