@@ -40,7 +40,6 @@ public class P12Main {
         }
     }
 
-
     public static void printMethodsModifiers(Method[] methods) {
         for (Method method : methods) {
             int modifier = method.getModifiers();
