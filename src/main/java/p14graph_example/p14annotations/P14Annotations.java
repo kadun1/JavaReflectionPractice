@@ -7,6 +7,11 @@ import java.lang.annotation.Target;
 
 public class P14Annotations {
 
+    @Target({ElementType.FIELD, ElementType.PARAMETER})
+    @Retention(RetentionPolicy.RUNTIME)
+    public @interface Input {
+        String value();
+    }
     @Target(ElementType.METHOD)
     @Retention(RetentionPolicy.RUNTIME)
     public @interface Operation {
