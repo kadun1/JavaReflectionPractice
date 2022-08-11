@@ -1,7 +1,6 @@
 package p12auction;
 
 import java.io.Serializable;
-import java.util.Locale;
 
 public abstract class P12Bid  implements Serializable {
 
